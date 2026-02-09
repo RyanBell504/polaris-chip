@@ -18,11 +18,12 @@ export class MyCard extends LitElement {
     this.description="DEFAULT DESCRIPTION";
     this.image="https://gopsusports.com/imgproxy/WGYkyuIKGU5T0IO-JEftbXTHodp6K-Il-oM_MFSwaiE/rs:fit:1980:0:0:0/g:ce:0:0/q:90/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2dvcHN1c3BvcnRzLXByb2QvMjAyMy8wNy8xMy9DNFMycW5DRzhxcE1JNHBYTGhHT1hacng1Qkdrd0FURDNMZnMwdG9CLndlYnA.webp";
     this.link="https://hax.psu.edu";
+    this.fancy=false;
   }
 
   static get styles() {
     return css`
-    #cardlist {
+   :host {
   display: flex;
 }
 .card{
@@ -31,6 +32,11 @@ export class MyCard extends LitElement {
   border: solid 2px;
   margin: 8px;
   padding: 8px
+}
+:host([fancy]){
+  background-color: pink;
+  border: 5px solid red;
+  box-shadow: 5px 5px 5px black;
 }
 
 .pic {
@@ -63,7 +69,6 @@ export class MyCard extends LitElement {
 
   render() {
     return html`
-<div id="cardlist">
 <div class="card">
   <div class="heading">
     <h1 class="title">
@@ -83,7 +88,6 @@ export class MyCard extends LitElement {
     </a>
   </div>
 </div>
-</div>
 `;
   }
 
@@ -93,6 +97,7 @@ export class MyCard extends LitElement {
       image: { type: String },
       description: { type: String },
       link: { type: String  },
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
