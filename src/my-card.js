@@ -70,23 +70,15 @@ export class MyCard extends LitElement {
   render() {
     return html`
 <div class="card">
-  <div class="heading">
     <h1 class="title">
       ${this.title}
     </h1>
-  </div>
-  <div class=paragraph>
     <p class="description"><slot>${this.description}</slot>
     </p>
-  </div>
-  <div class="picutre">
     <img class=pic src=${this.image}>
-  </div>
-  <div class="buttondiv">
     <a href=${this.link}>
     <button class="btn">Details</button>
     </a>
-  </div>
 </div>
 `;
   }
