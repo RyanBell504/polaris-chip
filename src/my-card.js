@@ -71,7 +71,7 @@ export class MyCard extends LitElement {
     </h1>
   </div>
   <div class=paragraph>
-    <p class="description">${this.description}
+    <p class="description"><slot>${this.description}</slot>
     </p>
   </div>
   <div class="picutre">
