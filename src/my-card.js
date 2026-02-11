@@ -25,41 +25,42 @@ export class MyCard extends LitElement {
     return css`
    :host {
   display: inline-block;
+  margin: 10px;
 }
 :host([fancy]){
-  display: block;
-  background-color: pink;
-  border: 2px solid fuchsia;
-  box-shadow: 10px 5px 5px red;
-  width: 420px;
+  display: inline-block;
+  box-shadow: 10px 5px 5px darkblue
 }
 .card{
   width: 400px;
   height: 500px;
   background-color: var(--psu-blue, #001e62);
   border: solid 2px;
-  margin: 8px;  
-  display: inline-block;
 }
 .pic {
   margin: 0px 50px;
   border: 5px solid;
   width: 300px;
   height: 200px;
+  aspect-ratio: 3/2;
 }
 .btn{
-  margin: 5px 150px;
+  margin: 100px 150px;
   padding: 10px;
 }
 .description{
-  margin: 5px 10px;
   font-size: 16px;
   color: white;
+  text-align: left;
+  padding: 8px;
+  height: 80px;
+  overflow: auto;
 }
 .title{
   margin: 1px 5px;
   color: white;
   font-size: 36px;
+  text-align: center;
 }
     `;
   }
@@ -70,14 +71,14 @@ export class MyCard extends LitElement {
     <h1 class="title">
       ${this.title}
     </h1>
-  <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+    <img class=pic src=${this.image}>
+  <details class="description" ?open="${this.fancy}" @toggle="${this.openChanged}">
   <summary>Description</summary>
   <div>
     <slot>${this.description}</slot>
   </div>
   </details>
-    <img class=pic src=${this.image}>
-    <a href=${this.link}>
+   <a href=${this.link}>
     <button class="btn">Details</button>
     </a>
 </div>
