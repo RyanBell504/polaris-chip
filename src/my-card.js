@@ -24,46 +24,43 @@ export class MyCard extends LitElement {
   static get styles() {
     return css`
    :host {
-  display: flex;
+  display: inline-block;
+}
+:host([fancy]){
+  display: block;
+  background-color: pink;
+  border: 2px solid fuchsia;
+  box-shadow: 10px 5px 5px red;
+  width: 420px;
 }
 .card{
   width: 400px;
+  height: 500px;
   background-color: var(--psu-blue, #001e62);
   border: solid 2px;
-  margin: 8px;
-  padding: 8px
+  margin: 8px;  
+  display: inline-block;
 }
-:host([fancy]){
-  background-color: pink;
-  border: 5px solid red;
-  box-shadow: 5px 5px 5px black;
-}
-
 .pic {
   margin: 0px 50px;
   border: 5px solid;
   width: 300px;
+  height: 200px;
 }
-
 .btn{
   margin: 5px 150px;
   padding: 10px;
 }
-
 .description{
   margin: 5px 10px;
   font-size: 16px;
   color: white;
 }
-
 .title{
-  margin: 1px 50px;
+  margin: 1px 5px;
   color: white;
   font-size: 36px;
 }
-      :host {
-        display: block;
-      }
     `;
   }
 
@@ -73,8 +70,12 @@ export class MyCard extends LitElement {
     <h1 class="title">
       ${this.title}
     </h1>
-    <p class="description"><slot>${this.description}</slot>
-    </p>
+  <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+  <summary>Description</summary>
+  <div>
+    <slot>${this.description}</slot>
+  </div>
+  </details>
     <img class=pic src=${this.image}>
     <a href=${this.link}>
     <button class="btn">Details</button>
@@ -82,6 +83,16 @@ export class MyCard extends LitElement {
 </div>
 `;
   }
+  // put this anywhere on the MyCard class; just above render() is probably good
+openChanged(e) {
+  console.log(e);
+  if (e.target.getAttribute('open') !== null) {
+    this.fancy = true;
+  }
+  else {
+    this.fancy = false;
+  }
+}
 
   static get properties() {
     return {
