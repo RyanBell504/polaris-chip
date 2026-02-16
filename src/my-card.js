@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@haxtheweb/meme-maker/meme-maker.js";
 
 /**
  * Now it's your turn. Here's what we need to try and do:
@@ -78,7 +79,7 @@ export class MyCard extends LitElement {
     <h1 class="title">
       ${this.title}
     </h1>
-    <img class=pic src=${this.image}>
+    <meme-maker class="pic" top-text="${this.title}" bottom-text="${this.title}" image-url="${this.image}"></meme-maker>
     <slot class="location"><p>${this.location}</p></slot>
   <details class="description" ?open="${this.fancy}" @toggle="${this.openChanged}">
   <summary>Description</summary>
